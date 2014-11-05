@@ -27,19 +27,20 @@ public class TimeStampIntercept {
 		Object[] objects = jp.getArgs();
 		int objNum = -1;
 		int userNum = -1;
-		
+		boolean isAuditDomain = false;
 		if(objects != null && objects.length > 0) {
 			for(int i = 0; i < objects.length; i++) {
 				Object obj = objects[i];
 				if(obj instanceof BaseAuditDomain) {
 					((BaseAuditDomain) obj).setCreateDate(new Date());
 					objNum = i;
+					isAuditDomain = true;
 				}
 				if(obj instanceof String) {
 					userNum = i;
 				}
 			}
-			((BaseAuditDomain) objects[objNum]).setCreateBy(String.valueOf(objects[userNum]));
+			if(isAuditDomain) ((BaseAuditDomain) objects[objNum]).setCreateBy(String.valueOf(objects[userNum]));
 		}
 	}
 	
@@ -49,18 +50,20 @@ public class TimeStampIntercept {
 
 		int objNum = -1;
 		int userNum = -1;
+		boolean isAuditDomain = false;
 		if(objects != null && objects.length > 0) {
 			for(int i = 0; i < objects.length; i++) {
 				Object obj = objects[i];
 				if(obj instanceof BaseAuditDomain) {
 					((BaseAuditDomain) obj).setUpdateDate(new Date());
 					objNum = i;
+					isAuditDomain = true;
 				}
 				if(obj instanceof String) {
 					userNum = i;
 				}
 			}
-			((BaseAuditDomain) objects[objNum]).setUpdateBy(String.valueOf(objects[userNum]));
+			if(isAuditDomain) ((BaseAuditDomain) objects[objNum]).setUpdateBy(String.valueOf(objects[userNum]));
 		}
 	}
 	

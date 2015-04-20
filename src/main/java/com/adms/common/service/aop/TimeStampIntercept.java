@@ -12,7 +12,7 @@ import com.adms.common.domain.BaseAuditDomain;
 @Aspect
 public class TimeStampIntercept {
 
-	@Pointcut("execution(* com.adms.bo.*.*.add*(..)")
+	@Pointcut("execution(* com.adms.bo.*.*.add*(..))")
 	public void addPointCut() {
 		
 	}
@@ -22,7 +22,9 @@ public class TimeStampIntercept {
 		
 	}
 
-	@Before("execution(* com.adms.bo.*.*.add*(..)) || execution(* com.adms.*.bo.*.*.add*(..))")
+	@Before("execution(* com.adms.bo.*.*.add*(..)) "
+			+ " || execution(* com.adms.*.bo.*.*.add*(..)) "
+			+ " || execution(* com.adms.**.service.**.*Service.add*(..))")
 	public void beforeInsert(JoinPoint jp) {
 		Object[] objects = jp.getArgs();
 		int objNum = -1;
@@ -44,7 +46,9 @@ public class TimeStampIntercept {
 		}
 	}
 	
-	@Before("execution(* com.adms.bo.*.*.update*(..))")
+	@Before("execution(* com.adms.bo.*.*.update*(..))"
+			+ " || execution(* com.adms.*.bo.*.*.update*(..)) "
+			+ " || execution(* com.adms.**.service.**.*Service.update*(..))")
 	public void beforeUpdate(JoinPoint jp) {
 		Object[] objects = jp.getArgs();
 

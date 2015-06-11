@@ -24,6 +24,7 @@ public class TimeStampIntercept {
 
 	@Before("execution(* com.adms.bo.*.*.add*(..)) "
 			+ " || execution(* com.adms.*.bo.*.*.add*(..)) "
+			+ " || execution(* com.adms.*.service.*Service.add*(..)) "
 			+ " || execution(* com.adms.**.service.**.*Service.add*(..))")
 	public void beforeInsert(JoinPoint jp) {
 		Object[] objects = jp.getArgs();
@@ -48,6 +49,7 @@ public class TimeStampIntercept {
 	
 	@Before("execution(* com.adms.bo.*.*.update*(..))"
 			+ " || execution(* com.adms.*.bo.*.*.update*(..)) "
+			+ " || execution(* com.adms.*.service.*Service.update*(..)) "
 			+ " || execution(* com.adms.**.service.**.*Service.update*(..))")
 	public void beforeUpdate(JoinPoint jp) {
 		Object[] objects = jp.getArgs();

@@ -34,9 +34,16 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>1.5.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>4.1.6.RELEASE</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.adms.common</groupId>
-			<artifactId>admsCommonDomain</artifactId>
+			<artifactId>admsCommonDao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
